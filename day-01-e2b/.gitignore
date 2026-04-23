@@ -1,0 +1,31 @@
+# Secrets and local config
+.env
+.env.*
+!.env.example
+web/.env.local
+
+# Local agent state
+.agent/active
+
+# Python caches and environments
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+
+# Node dependencies and build output
+web/node_modules/
+web/.next/
+web/out/
+fixtures/**/node_modules/
+fixtures/**/dist/
+
+# Local E2B run evidence. These are useful while developing, but not source.
+/runs/
+/arenas/
+
+# System/editor noise
+.DS_Store
+*.swp
+*.swo

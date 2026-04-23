@@ -1,0 +1,38 @@
+:root {
+  color-scheme: light;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  background: #f4f1eb;
+  color: #1b120d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+#app {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.hello-card {
+  width: min(520px, 100%);
+  padding: 40px 32px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(27, 18, 13, 0.08);
+  box-shadow: 0 24px 60px rgba(60, 34, 19, 0.12);
+  text-align: center;
+}
+
+.hello-card h1 {
+  margin: 0;
+  font-size: clamp(40px, 12vw, 72px);
+  line-height: 0.95;
+}

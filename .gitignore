@@ -1,0 +1,89 @@
+# Local/personal planning
+.private/
+AGENTS.md
+agents.md
+docs/
+campaign.csv
+source-ai-devrel-salary-filter.csv
+*salary*.csv
+.agent/
+**/.agent/
+DEMO-WALKTHROUGH.md
+**/DEMO-WALKTHROUGH.md
+NOTES.md
+**/NOTES.md
+
+# Future day folders are private until each day is ready to publish.
+day-02-*/
+day-03-*/
+day-04-*/
+day-05-*/
+day-06-*/
+day-07-*/
+day-08-*/
+day-09-*/
+day-10-*/
+day-11-*/
+day-12-*/
+day-13-*/
+day-14-*/
+day-15-*/
+day-16-*/
+day-17-*/
+day-18-*/
+day-19-*/
+day-20-*/
+day-21-*/
+day-22-*/
+day-23-*/
+day-24-*/
+day-25-*/
+day-26-*/
+day-27-*/
+day-28-*/
+day-29-*/
+day-30-*/
+
+# Secrets
+.env
+.env.*
+!.env.example
+
+# System/editor noise
+.DS_Store
+*.swp
+*.swo
+
+# Common generated dependencies/build outputs
+node_modules/
+.venv/
+__pycache__/
+*.py[cod]
+dist/
+build/
+.next/
+.turbo/
+.cache/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+coverage/
+htmlcov/
+
+# Logs and local databases
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+*.sqlite
+*.sqlite3
+*.db
+
+# Deployment/local tool state
+.vercel/
+
+# Media drafts too large for source by default
+*.mov
+*.mp4
+*.webm
