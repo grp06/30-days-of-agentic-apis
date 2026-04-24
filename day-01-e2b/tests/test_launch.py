@@ -201,7 +201,7 @@ async def test_launcher_records_lineage_immediately(tmp_path) -> None:  # noqa: 
             {
                 "run_id": "parent",
                 "task": "original task",
-                "model_name": "kimi-k2.6:cloud",
+                "model_name": "gemma4:31b",
                 "fixture_name": "sample_frontend_task",
                 "started_at": "2026-04-21T00:00:00+00:00",
                 "sandbox_id": "sbx-parent",
@@ -238,7 +238,9 @@ async def test_launcher_records_lineage_immediately(tmp_path) -> None:  # noqa: 
     assert metadata["parent_run_id"] == "parent"
     assert metadata["source_snapshot_id"] == "snap-82"
     assert metadata["instruction_override"] == "Restyle the hero"
+    assert metadata["model_name"] == "gemma4:31b"
     assert status["state"] == "running"
+    assert status["current_model_name"] == "gemma4:31b"
     await asyncio.sleep(0)
 
 
