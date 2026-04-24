@@ -247,6 +247,7 @@ class RunLauncher:
             source_checkpoint_sequence=checkpoint_sequence,
             instruction_override=instruction_override,
             parent_task=parent_metadata.task,
+            model_name=parent_metadata.model_name,
         )
         run_id = utc_filename()
         pending = self._register_pending_run(run_id=run_id, source=source)
