@@ -65,7 +65,7 @@ pnpm --dir web dev
 
 ## Demo Flow
 
-For a short recording, use the homepage to open a prepared or recent arena instead of waiting on a fresh live run.
+Use the homepage to open a prepared or recent arena instead of waiting on a fresh live run.
 
 1. Open the homepage and state the premise: one prompt, one starting app, four isolated E2B sandboxes.
 2. Open an arena and compare the lane summaries, preview states, checkpoints, and model names.

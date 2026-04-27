@@ -1,0 +1,54 @@
+{
+  "status": "completed_with_warnings",
+  "cache_key": "stripe-checkout-contract-fixture",
+  "preflight": {
+    "verdict": "warning",
+    "normalized_url": "https://docs.stripe.com/checkout/quickstart",
+    "allowed_hosts": [
+      "docs.stripe.com"
+    ],
+    "key_status": {
+      "status": "configured",
+      "configured": true,
+      "message": "Contract example; no live Firecrawl key was checked."
+    },
+    "checks": [
+      {
+        "id": "public_access",
+        "status": "pass",
+        "severity": "info",
+        "message": "The cached sample represents a public Stripe docs entry point.",
+        "url": "https://docs.stripe.com/checkout/quickstart"
+      },
+      {
+        "id": "live_fetch",
+        "status": "skipped",
+        "severity": "info",
+        "message": "No live Firecrawl request was run for this contract example."
+      }
+    ]
+  },
+  "selected_sources": [
+    {
+      "id": "src_1",
+      "url": "https://docs.stripe.com/checkout/quickstart",
+      "title": "Stripe Checkout quickstart",
+      "reason_selected": "Primary task page for creating and redirecting to a Checkout Session.",
+      "retrieved_via": "cached_fixture",
+      "markdown_chars": 18420
+    },
+    {
+      "id": "src_2",
+      "url": "https://docs.stripe.com/payments/checkout",
+      "title": "Stripe Checkout overview",
+      "reason_selected": "Context page for how Checkout fits into payment flows.",
+      "retrieved_via": "cached_fixture",
+      "markdown_chars": 9210
+    }
+  ],
+  "candidate_count": 2,
+  "warnings": [
+    "Contract example; no live Firecrawl map or scrape request was run."
+  ],
+  "artifact_path": null
+}

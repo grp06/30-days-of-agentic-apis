@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/day-02-firecrawl-docs-auditor/audit-request.schema.json",
+  "title": "Firecrawl Docs Auditor Request",
+  "description": "Safe-to-store input for one goal-directed documentation audit. Runtime credentials are intentionally excluded.",
+  "type": "object",
+  "required": [
+    "docs_url",
+    "integration_goal",
+    "mode"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "docs_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https?://",
+      "description": "Public HTTP or HTTPS documentation entry point."
+    },
+    "integration_goal": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Specific developer task the agent should be able to perform using the docs."
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "live",
+        "cached"
+      ],
+      "description": "live allows later slices to call Firecrawl; cached uses local fixture data."
+    },
+    "max_pages": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50,
+      "default": 20,
+      "description": "Maximum pages to inspect. The first demo should default to 20."
+    },
+    "max_depth": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 3,
+      "default": 1,
+      "description": "Maximum link depth from the entry URL. The first demo should default to 1."
+    },
+    "allowed_hosts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true,
+      "description": "Host allowlist for later fetch logic. This is a safety boundary, not a crawler expansion mechanism."
+    },
+    "cache_key": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Local fixture key used when mode is cached."
+    }
+  }
+}

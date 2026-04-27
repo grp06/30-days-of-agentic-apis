@@ -1,0 +1,347 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/day-02-firecrawl-docs-auditor/audit-report.schema.json",
+  "title": "Firecrawl Docs Auditor Report",
+  "description": "Safe-to-store output from one goal-directed documentation audit.",
+  "type": "object",
+  "required": [
+    "request",
+    "status",
+    "summary",
+    "scorecard",
+    "selected_sources",
+    "extracted_facts",
+    "smoke_test",
+    "warnings",
+    "suggested_fixes",
+    "metadata"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "request": {
+      "$ref": "audit-request.schema.json"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "completed",
+        "completed_with_warnings",
+        "blocked"
+      ]
+    },
+    "summary": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scorecard": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/scorecard_dimension"
+      }
+    },
+    "selected_sources": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/source"
+      }
+    },
+    "extracted_facts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidence_item"
+      }
+    },
+    "smoke_test": {
+      "$ref": "#/$defs/smoke_test"
+    },
+    "warnings": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidence_item"
+      }
+    },
+    "suggested_fixes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/evidence_item"
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "required": [
+        "mode",
+        "generated_by"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "mode": {
+          "type": "string",
+          "enum": [
+            "live",
+            "cached"
+          ]
+        },
+        "generated_by": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cache_key": {
+          "type": "string",
+          "minLength": 1
+        },
+        "notes": {
+          "type": "string"
+        },
+        "fetched_source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "prompt_source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "omitted_source_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "represented_goal_terms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_goal_terms": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "supported_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "required_claims_supported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "required_claims_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "optional_claims_supported": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "optional_claims_total": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missing_required_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_optional_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prompt_note": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "basis": {
+      "type": "string",
+      "enum": [
+        "source_backed",
+        "inferred",
+        "uncertain"
+      ]
+    },
+    "source_ref_array": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "id",
+        "url",
+        "title",
+        "reason_selected",
+        "retrieved_via"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "pattern": "^https?://"
+        },
+        "title": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason_selected": {
+          "type": "string",
+          "minLength": 1
+        },
+        "retrieved_via": {
+          "type": "string",
+          "enum": [
+            "firecrawl_map",
+            "firecrawl_scrape",
+            "llms_txt",
+            "sitemap",
+            "cached_fixture"
+          ]
+        }
+      }
+    },
+    "scorecard_dimension": {
+      "type": "object",
+      "required": [
+        "id",
+        "label",
+        "score",
+        "max_score",
+        "rationale",
+        "source_refs"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "enum": [
+            "discoverability",
+            "task_fit",
+            "completeness",
+            "copy_pasteability",
+            "agent_friction"
+          ]
+        },
+        "label": {
+          "type": "string",
+          "minLength": 1
+        },
+        "score": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_score": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_refs": {
+          "$ref": "#/$defs/source_ref_array"
+        }
+      }
+    },
+    "evidence_item": {
+      "type": "object",
+      "required": [
+        "id",
+        "message",
+        "basis"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "basis": {
+          "$ref": "#/$defs/basis"
+        },
+        "source_refs": {
+          "$ref": "#/$defs/source_ref_array"
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "warning",
+            "blocking"
+          ]
+        }
+      }
+    },
+    "smoke_test": {
+      "type": "object",
+      "required": [
+        "result",
+        "basis",
+        "message"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "result": {
+          "type": "string",
+          "enum": [
+            "pass",
+            "partial",
+            "fail"
+          ]
+        },
+        "basis": {
+          "$ref": "#/$defs/basis"
+        },
+        "message": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source_refs": {
+          "$ref": "#/$defs/source_ref_array"
+        },
+        "missing_facts": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "likely_next_steps": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

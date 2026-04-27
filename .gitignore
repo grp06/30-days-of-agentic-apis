@@ -1,20 +1,24 @@
 # Local/personal planning
 .private/
 AGENTS.md
+**/AGENTS.md
 agents.md
+CLAUDE.md
+**/CLAUDE.md
 docs/
 campaign.csv
 source-ai-devrel-salary-filter.csv
 *salary*.csv
 .agent/
 **/.agent/
+.agents/
+**/.agents/
 DEMO-WALKTHROUGH.md
 **/DEMO-WALKTHROUGH.md
 NOTES.md
 **/NOTES.md
 
 # Future day folders are private until each day is ready to publish.
-day-02-*/
 day-03-*/
 day-04-*/
 day-05-*/

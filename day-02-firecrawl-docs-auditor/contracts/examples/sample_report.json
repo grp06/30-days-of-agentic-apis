@@ -1,0 +1,150 @@
+{
+  "request": {
+    "docs_url": "https://docs.stripe.com/checkout/quickstart",
+    "integration_goal": "Create a checkout session and redirect the user to Stripe Checkout.",
+    "mode": "cached",
+    "max_pages": 20,
+    "max_depth": 1,
+    "allowed_hosts": [
+      "docs.stripe.com"
+    ],
+    "cache_key": "stripe-checkout-contract-fixture"
+  },
+  "status": "completed_with_warnings",
+  "summary": "The selected docs appear sufficient for an agent to attempt a basic Checkout redirect, but the report would still warn about framework-specific setup details.",
+  "scorecard": [
+    {
+      "id": "discoverability",
+      "label": "Discoverability",
+      "score": 4,
+      "max_score": 5,
+      "rationale": "The quickstart page is a clear entry point for Checkout setup.",
+      "source_refs": [
+        "src_1"
+      ]
+    },
+    {
+      "id": "task_fit",
+      "label": "Task Fit",
+      "score": 5,
+      "max_score": 5,
+      "rationale": "The selected source directly matches creating a Checkout Session and redirecting a customer.",
+      "source_refs": [
+        "src_1"
+      ]
+    },
+    {
+      "id": "completeness",
+      "label": "Completeness",
+      "score": 3,
+      "max_score": 5,
+      "rationale": "The flow is covered, but an agent may need extra framework-specific details to wire routes and environment variables.",
+      "source_refs": [
+        "src_1",
+        "src_2"
+      ]
+    },
+    {
+      "id": "copy_pasteability",
+      "label": "Copy Pasteability",
+      "score": 4,
+      "max_score": 5,
+      "rationale": "The docs provide implementation-oriented snippets, though the final app structure still depends on the user's framework.",
+      "source_refs": [
+        "src_1"
+      ]
+    },
+    {
+      "id": "agent_friction",
+      "label": "Agent Friction",
+      "score": 3,
+      "max_score": 5,
+      "rationale": "The agent likely needs to infer how to combine product, price, success, and cancel URL setup in the local app.",
+      "source_refs": [
+        "src_1",
+        "src_2"
+      ]
+    }
+  ],
+  "selected_sources": [
+    {
+      "id": "src_1",
+      "url": "https://docs.stripe.com/checkout/quickstart",
+      "title": "Stripe Checkout quickstart",
+      "reason_selected": "Primary task page for creating and redirecting to a Checkout Session.",
+      "retrieved_via": "cached_fixture"
+    },
+    {
+      "id": "src_2",
+      "url": "https://docs.stripe.com/payments/checkout",
+      "title": "Stripe Checkout overview",
+      "reason_selected": "Context page for how Checkout fits into payment flows.",
+      "retrieved_via": "cached_fixture"
+    }
+  ],
+  "extracted_facts": [
+    {
+      "id": "fact_checkout_session",
+      "message": "A Checkout integration needs server-side creation of a Checkout Session before redirecting the customer.",
+      "basis": "source_backed",
+      "source_refs": [
+        "src_1"
+      ]
+    },
+    {
+      "id": "fact_success_cancel_urls",
+      "message": "The redirect flow depends on success and cancel URLs supplied by the app.",
+      "basis": "source_backed",
+      "source_refs": [
+        "src_1"
+      ]
+    }
+  ],
+  "smoke_test": {
+    "result": "partial",
+    "basis": "inferred",
+    "message": "An agent could likely create the minimal redirect flow from these pages, but may need app-specific route and environment variable conventions.",
+    "source_refs": [
+      "src_1",
+      "src_2"
+    ],
+    "missing_facts": [
+      "Exact framework route shape for the user's app",
+      "Where the app stores server-only environment variables"
+    ],
+    "likely_next_steps": [
+      "Create a server endpoint that creates a Checkout Session",
+      "Redirect the browser to the returned Checkout URL",
+      "Add success and cancel routes"
+    ]
+  },
+  "warnings": [
+    {
+      "id": "warn_framework_gap",
+      "message": "The selected docs are product-focused; framework-specific route wiring may still require inference.",
+      "basis": "inferred",
+      "source_refs": [
+        "src_1"
+      ],
+      "severity": "warning"
+    }
+  ],
+  "suggested_fixes": [
+    {
+      "id": "fix_agent_checklist",
+      "message": "Add an agent-oriented checklist that names required server route, environment variable, redirect, success URL, and cancel URL steps.",
+      "basis": "inferred",
+      "source_refs": [
+        "src_1",
+        "src_2"
+      ],
+      "severity": "info"
+    }
+  ],
+  "metadata": {
+    "mode": "cached",
+    "generated_by": "contract_fixture",
+    "cache_key": "stripe-checkout-contract-fixture",
+    "notes": "Illustrative contract example only; no live Firecrawl or Codex audit was run."
+  }
+}

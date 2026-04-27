@@ -1,0 +1,11 @@
+{
+  "docs_url": "https://docs.stripe.com/checkout/quickstart",
+  "integration_goal": "Create a checkout session and redirect the user to Stripe Checkout.",
+  "mode": "cached",
+  "max_pages": 20,
+  "max_depth": 1,
+  "allowed_hosts": [
+    "docs.stripe.com"
+  ],
+  "cache_key": "stripe-checkout-contract-fixture"
+}
